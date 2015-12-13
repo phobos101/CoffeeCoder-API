@@ -47,4 +47,4 @@ app.use(function (err, req, res, next) {
 app.use("/api", routes);
 
 app.listen(3000);
-console.log("Anansi is alive and listening on port 3000.");
+console.log("coffeeCoderAPI is alive and listening on port 3000.");

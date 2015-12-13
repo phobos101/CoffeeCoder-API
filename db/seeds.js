@@ -12,5 +12,5 @@ var demoLesson = new Lesson({
 
 demoLesson.save(function (err, demoLesson) {
   if (err) return console.log('[ERROR] - ' + err);
-  console.log('[+] - ' + title + ' added. Lesson content:\n ' + content);
+  console.log('[+] - ' + demoLesson.title + ' added. Lesson content:\n ' + demoLesson.content);
 });
