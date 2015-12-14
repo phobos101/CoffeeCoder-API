@@ -6,7 +6,7 @@ var api = supertest('http://localhost:3000');
 //          INDEX           //
 //==========================//
 
-describe('/GET users', function() {
+describe('GET /users', function() {
 
   it('Should return a HTTP status code of 200', function(done) {
     api
@@ -83,7 +83,7 @@ describe('/GET users', function() {
 //           SHOW           //
 //==========================//
 
-describe('/GET users/:id', function() {
+describe('GET /users/:id', function() {
 
   it('Should return a HTTP status code of 200', function(done) {
     api
@@ -113,7 +113,7 @@ describe('/GET users/:id', function() {
           .get('/users/' + id)
           .set('Accept', 'application/json')
           .end(function(err, res) {
-            expect(res.body.users).to.have.property('email');
+            expect(res.body.user).to.have.property('email');
             done();
           });
       });
@@ -129,7 +129,7 @@ describe('/GET users/:id', function() {
           .get('/users/' + id)
           .set('Accept', 'application/json')
           .end(function(err, res) {
-            expect(res.body.users).to.have.property('password');
+            expect(res.body.user).to.have.property('password');
             done();
           });
       });
@@ -145,7 +145,7 @@ describe('/GET users/:id', function() {
           .get('/users/' + id)
           .set('Accept', 'application/json')
           .end(function(err, res) {
-            expect(res.body.users).to.have.property('lessonsSubbed');
+            expect(res.body.user).to.have.property('lessonsSubbed');
             done();
           });
       });
@@ -161,7 +161,7 @@ describe('/GET users/:id', function() {
           .get('/users/' + id)
           .set('Accept', 'application/json')
           .end(function(err, res) {
-            expect(res.body.users).to.have.property('lessonsCreated');
+            expect(res.body.user).to.have.property('lessonsCreated');
             done();
           });
       });
@@ -177,7 +177,7 @@ describe('/GET users/:id', function() {
           .get('/users/' + id)
           .set('Accept', 'application/json')
           .end(function(err, res) {
-            expect(res.body.users).to.have.property('lessonsCompleted');
+            expect(res.body.user).to.have.property('lessonsCompleted');
             done();
           });
       });
@@ -203,11 +203,11 @@ describe('POST /users', function() {
       'lessonsCompleted': []
     }).end(function(err, res) {
       expect(res.status).to.equal(201);
-      expect(res.body.users).to.have.property('email');
-      expect(res.body.users).to.have.property('password');
-      expect(res.body.users).to.have.property('lessonsSubbed');
-      expect(res.body.users).to.have.property('lessonsCreated');
-      expect(res.body.users).to.have.property('lessonsCompleted');
+      expect(res.body.user).to.have.property('email');
+      expect(res.body.user).to.have.property('password');
+      expect(res.body.user).to.have.property('lessonsSubbed');
+      expect(res.body.user).to.have.property('lessonsCreated');
+      expect(res.body.user).to.have.property('lessonsCompleted');
       done();
     });
   });
@@ -237,8 +237,8 @@ describe('PUT /users/:id', function() {
             'lessonsCompleted': []
           }).end(function(err, res) {
             expect(res.status).to.equal(200);
-            expect(res.body.users.email).to.equal('updated@test.com');
-            expect(res.body.users.password).to.equal('updated');
+            expect(res.body.user.email).to.equal('updated@test.com');
+            expect(res.body.user.password).to.equal('updated');
             done();
           });
       });
@@ -257,7 +257,7 @@ describe('PUT /users/:id', function() {
             'email': 'updatedAGAIN@test.com',
           }).end(function(err, res) {
             expect(res.status).to.equal(200);
-            expect(res.body.lesson.title).to.equal('updatedAGAIN@test.com');
+            expect(res.body.user.email).to.equal('updatedAGAIN@test.com');
             done();
           });
       });

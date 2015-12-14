@@ -73,7 +73,7 @@ describe('GET /lessons', function() {
 //           SHOW           //
 //==========================//
 
-describe('/GET lessons/:id', function() {
+describe('GET /lessons/:id', function() {
 
   it('Should return a HTTP status code of 200', function(done) {
     api

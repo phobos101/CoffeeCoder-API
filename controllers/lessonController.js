@@ -10,7 +10,7 @@ function allLessons(req, res) {
 function showLesson(req, res) {
   var id = req.params.id;
 
-  Lesson.findById({_id:id}, function(err, lesson) {
+  Lesson.findById({_id: id}, function(err, lesson) {
     if (err) return res.status(500).json({message: 'Something went wrong.'});
     if (!lesson) return res.status(204).json({message: 'No lesson found with provided ID.'});
     res.status(200).json({lesson: lesson});
@@ -28,7 +28,7 @@ function createLesson(req, res) {
 function updateLesson(req, res) {
   var id = req.params.id;
 
-  Lesson.findById({_id:id}, function(err, lesson) {
+  Lesson.findById({_id: id}, function(err, lesson) {
     if (err) return res.status(500).json({message: "Something went wrong."});
     if (!lesson) return res.status(204).json({message: 'No lesson found with provided ID.'});
 
@@ -48,7 +48,7 @@ function updateLesson(req, res) {
 function deleteLesson(req, res) {
   var id = req.params.id;
 
-  Lesson.remove({_id:id}, function(err) {
+  Lesson.remove({_id: id}, function(err) {
     if (err) return res.status(500).json({message: 'No lesson found with provided ID.'});
     res.status(200).json({message: 'Lesson removed successfully.'});
   });
