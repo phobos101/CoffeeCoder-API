@@ -8,8 +8,13 @@ var userController = require('../controllers/userController');
 // Establish 'router'
 var router = express.Router();
 
-// Standard routes
-router.get('/lessons', lessonController.allLessons);
-router.get('/users', userController.allUsers);
+router.route('/lessons')
+  .get(lessonController.allLessons);
+
+router.route('/lessons/:id')
+  .get(lessonController.showLesson);
+
+router.route('/users')
+  .get(userController.allUsers);
 
 module.exports = router;

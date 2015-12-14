@@ -2,6 +2,10 @@ var expect = require('chai').expect;
 var supertest = require('supertest');
 var api = supertest('http://localhost:3000');
 
+//==========================//
+//         LESSONS          //
+//==========================//
+
 describe('GET /lessons', function() {
 
   it('Should return a HTTP status code of 200', function(done) {
@@ -64,6 +68,30 @@ describe('GET /lessons', function() {
   });
 
 });
+
+describe('/GET lessons/:id', function() {
+  it('Should return a HTTP status code of 200', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .get('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .end(function(err, res) {
+            console.log(res.status);
+            expect(res.status).to.equal(200);
+            done();
+          });
+      });
+  });
+
+});
+
+//==========================//
+//          USERS           //
+//==========================//
 
 describe('/GET users', function() {
 

@@ -7,6 +7,11 @@ function allLessons(req, res) {
    });
 };
 
+function showLesson(req, res) {
+  
+};
+
 module.exports = {
-  allLessons: allLessons
+  allLessons: allLessons,
+  showLesson: showLesson
 };
