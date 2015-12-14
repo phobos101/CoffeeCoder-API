@@ -217,4 +217,38 @@ describe('PUT /lessons/:id', function() {
       });
   });
 
+  it('Should update an existing lesson partially', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .put('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .send({
+            'expectedResult': 'updated again'
+          }).end(function(err, res) {
+            expect(res.status).to.equal(202);
+            expect(res.body.lesson.title).to.equal('Updated title');
+            expect(res.body.lesson.content).to.equal('Updated content');
+            expect(res.body.lesson.difficulty).to.equal(2);
+            expect(res.body.lesson.expectedResult).to.equal('updated again');
+            done();
+          });
+      });
+  });
+
+  it('Should error when wrong ID sent in URL', function(done) {
+    api
+      .put('/lessons/randomnonvalidID')
+      .set('Accept', 'application/json')
+      .send({
+        'expectedResult': 'updated again'
+      }).end(function(err, res) {
+        expect(res.status).to.equal(500);
+        done();
+      });
+  });
+
 });
