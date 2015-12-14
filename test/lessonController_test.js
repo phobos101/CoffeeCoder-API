@@ -163,7 +163,7 @@ describe('/GET lessons/:id', function() {
 //          CREATE          //
 //==========================//
 
-describe('CREATE /lessons', function() {
+describe('POST /lessons', function() {
 
   it('Should return a HTTP status code of 201', function(done) {
     api
@@ -182,6 +182,39 @@ describe('CREATE /lessons', function() {
       expect(res.body.lesson).to.have.property('expectedResult');
       done();
     });
+  });
+
+});
+
+//==========================//
+//          UPDATE          //
+//==========================//
+
+describe('PUT /lessons/:id', function() {
+
+  it('Should update an existing lesson', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .put('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .send({
+            'title': 'Updated title',
+            'content': 'Updated content',
+            'difficulty': 2,
+            'expectedResult': 'updated'
+          }).end(function(err, res) {
+            expect(res.status).to.equal(200);
+            expect(res.body.lesson.title).to.equal('Updated title');
+            expect(res.body.lesson.content).to.equal('Updated content');
+            expect(res.body.lesson.difficulty).to.equal(2);
+            expect(res.body.lesson.expectedResult).to.equal('updated');
+            done();
+          });
+      });
   });
 
 });
