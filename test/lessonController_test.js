@@ -3,7 +3,7 @@ var supertest = require('supertest');
 var api = supertest('http://localhost:3000');
 
 //==========================//
-//         LESSONS          //
+//          INDEX           //
 //==========================//
 
 describe('GET /lessons', function() {
@@ -68,6 +68,10 @@ describe('GET /lessons', function() {
   });
 
 });
+
+//==========================//
+//           SHOW           //
+//==========================//
 
 describe('/GET lessons/:id', function() {
 
@@ -155,6 +159,10 @@ describe('/GET lessons/:id', function() {
 
 });
 
+//==========================//
+//          CREATE          //
+//==========================//
+
 describe('CREATE /lessons', function() {
 
   it('Should return a HTTP status code of 201', function(done) {
@@ -168,140 +176,9 @@ describe('CREATE /lessons', function() {
       'expectedResult': 'test'
     }).end(function(err, res) {
       expect(res.status).to.equal(201);
+      expect(res.body.message).to.equal('Lesson sucessfully created');
       done();
     });
-  });
-
-});
-
-describe('CREATE /lessons (cont.)', function() {
-  before(function(done) {
-    api
-    .post('/candies')
-    .set('Accept', 'application/json')
-    .send({
-      'title': 'testLesson',
-      'content': 'Testing lesson creation with chai',
-      'difficulty': 1,
-      'expectedResult': 'test'
-    }).end(done);
-  });
-
-  it('Should contain a "title" property', function(done) {
-    api
-      .get('/lessons')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-      expect(res.body).to.have.property('title');
-      done();
-    });
-  });
-
-  it('Should contain a "content" property', function(done) {
-    api
-      .get('/lessons')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-      expect(res.body).to.have.property('content');
-      done();
-    });
-  });
-
-  it('Should contain a "difficulty" property', function(done) {
-    api
-      .get('/lessons')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-      expect(res.body).to.have.property('difficulty');
-      done();
-    });
-  });
-
-  it('Should contain a "expectedResult" property', function(done) {
-    api
-      .get('/lessons')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-      expect(res.body).to.have.property('expectedResult');
-      done();
-    });
-  });
-
-});
-
-//==========================//
-//          USERS           //
-//==========================//
-
-describe('/GET users', function() {
-
-  it('Should return a HTTP status code of 200', function(done) {
-    api
-      .get('/users')
-      .set('Accept', 'application/json')
-      .expect(200, done);
-  });
-
-  it('Should return an object containing an array of objects', function(done) {
-    api
-      .get('/users')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-        expect(res.body).to.be.an('object');
-        expect(res.body.users).to.be.an('array');
-        expect(res.body.users[0]).to.be.an('object');
-        done();
-      });
-  });
-
-  it('An inner object should contain an "email" property', function(done) {
-    api
-      .get('/users')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-        expect(res.body.users[0]).to.have.property('email');
-        done();
-      });
-  });
-
-  it('An inner object should contain a "password" property', function(done) {
-    api
-      .get('/users')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-        expect(res.body.users[0]).to.have.property('password');
-        done();
-      });
-  });
-
-  it('An inner object should contain a "lessonsSubbed" property', function(done) {
-    api
-      .get('/users')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-        expect(res.body.users[0]).to.have.property('lessonsSubbed');
-        done();
-      });
-  });
-
-  it('An inner object should contain a "lessonsCreated" property', function(done) {
-    api
-      .get('/users')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-        expect(res.body.users[0]).to.have.property('lessonsCreated');
-        done();
-      });
-  });
-
-  it('An inner object should contain a "lessonsCompleted" property', function(done) {
-    api
-      .get('/users')
-      .set('Accept', 'application/json')
-      .end(function(err, res) {
-        expect(res.body.users[0]).to.have.property('lessonsCompleted');
-        done();
-      });
   });
 
 });
