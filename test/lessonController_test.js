@@ -4,14 +4,14 @@ var api = supertest('http://localhost:3000');
 
 describe('GET /lessons', function() {
 
-  it('should return a HTTP status code of 200', function(done) {
+  it('Should return a HTTP status code of 200', function(done) {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
       .expect(200, done);
   });
 
-  it('should return an object containing an array of objects', function(done) {
+  it('Should return an object containing an array of objects', function(done) {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
@@ -23,14 +23,34 @@ describe('GET /lessons', function() {
       });
   });
 
-  // it('should return an object that contains a "name" property', function(done) {
-  //   api
-  //     .get('/lessons')
-  //     .set('Accept', 'application/json')
-  //     .end(function(err, res) {
-  //       expect(res.body[0]).to.have.property('name');
-  //       done();
-  //     });
-  // });
+  it('An inner object should contain a "title" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        expect(res.body.lessons[0]).to.have.property('title');
+        done();
+      });
+  });
+
+  it('An inner object should contain a "content" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        expect(res.body.lessons[0]).to.have.property('content');
+        done();
+      });
+  });
+
+  it('An inner object should contain a "difficulty" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        expect(res.body.lessons[0]).to.have.property('difficulty');
+        done();
+      });
+  });
 
 });
