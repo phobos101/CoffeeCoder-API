@@ -1,4 +1,4 @@
 module.exports = {
-  // 'secret': 'changeme',
+  'secret': 'changeme',
   'database': 'mongodb://localhost:27017/coffeeCoderAPI'
 };
