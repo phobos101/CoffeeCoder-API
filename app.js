@@ -7,14 +7,14 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 var passport = require('passport');
-// var jwt = require('jsonwebtoken');
-// var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var expressJWT = require('express-jwt');
 
 // Require relative files
 var config = require('./config/config');
 var routes = require('./config/routes');
 require('./config/passport')(passport);
-// var secret = require('./config/config').secret;
+var secret = process.env.COFFEECODER_SECRET;
 
 // Hook into mongoDB via mongoose
 mongoose.connect(config.database);
@@ -38,6 +38,16 @@ app.use(methodOverride(function(req, res) {
     return method;
   };
 }));
+
+// Set app to use JWTs
+app.use(expressJWT({secret: secret})
+  .unless({
+    path: [
+      {url: '/register', methods: ['POST']},
+      {url: '/login', methods: ['POST']},
+      {url: '/lessons', methods: ['GET']},
+    ]
+  }));
 
 // Display user friendly error when 401 occurs
 app.use(function(err, req, res, next) {

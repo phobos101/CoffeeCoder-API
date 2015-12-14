@@ -17,14 +17,6 @@ function showUser(req, res) {
   });
 };
 
-function createUser(req, res) {
-  var user = new User(req.body);
-  user.save(function(err) {
-    if (err) return res.status(500).json({message: 'Error creating a new user'});
-    res.status(201).json({user: user});
-  });
-};
-
 function updateUser(req, res) {
   var id = req.params.id;
 
@@ -58,7 +50,6 @@ function deleteUser(req, res) {
 module.exports = {
   allUsers: allUsers,
   showUser: showUser,
-  createUser: createUser,
   updateUser: updateUser,
   deleteUser: deleteUser
 };
