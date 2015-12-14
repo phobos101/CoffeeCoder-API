@@ -54,3 +54,14 @@ describe('GET /lessons', function() {
   });
 
 });
+
+describe('/GET users', function() {
+
+  it('Should return a HTTP status code of 200', function(done) {
+    api
+      .get('/users')
+      .set('Accept', 'application/json')
+      .expect(200, done);
+  });
+
+});
