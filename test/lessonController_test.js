@@ -80,7 +80,6 @@ describe('/GET lessons/:id', function() {
           .get('/lessons/' + id)
           .set('Accept', 'application/json')
           .end(function(err, res) {
-            console.log(res.status);
             expect(res.status).to.equal(200);
             done();
           });
