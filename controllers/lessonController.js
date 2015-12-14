@@ -17,7 +17,16 @@ function showLesson(req, res) {
   });
 };
 
+function createLesson(req, res) {
+  var lesson = new Lesson(req.body);
+  lesson.save(function(err) {
+    if (err) return res.status(500).json({message: "Error creating a new lesson."});
+    res.status(201).json({lesson: lesson});
+  });
+}
+
 module.exports = {
   allLessons: allLessons,
-  showLesson: showLesson
+  showLesson: showLesson,
+  createLesson: createLesson
 };

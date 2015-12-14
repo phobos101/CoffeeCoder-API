@@ -9,7 +9,8 @@ var userController = require('../controllers/userController');
 var router = express.Router();
 
 router.route('/lessons')
-  .get(lessonController.allLessons);
+  .get(lessonController.allLessons)
+  .post(lessonController.createLesson);
 
 router.route('/lessons/:id')
   .get(lessonController.showLesson);

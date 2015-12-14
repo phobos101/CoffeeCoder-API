@@ -176,7 +176,10 @@ describe('CREATE /lessons', function() {
       'expectedResult': 'test'
     }).end(function(err, res) {
       expect(res.status).to.equal(201);
-      expect(res.body.message).to.equal('Lesson sucessfully created');
+      expect(res.body.lesson).to.have.property('title');
+      expect(res.body.lesson).to.have.property('content');
+      expect(res.body.lesson).to.have.property('difficulty');
+      expect(res.body.lesson).to.have.property('expectedResult');
       done();
     });
   });
