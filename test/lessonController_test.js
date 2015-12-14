@@ -70,6 +70,7 @@ describe('GET /lessons', function() {
 });
 
 describe('/GET lessons/:id', function() {
+
   it('Should return a HTTP status code of 200', function(done) {
     api
       .get('/lessons')
@@ -80,7 +81,73 @@ describe('/GET lessons/:id', function() {
           .get('/lessons/' + id)
           .set('Accept', 'application/json')
           .end(function(err, res) {
+            // console log at this point shows res.body is ONLY /lessons/:id
+            // therefore all testing in this block must be for :id only
             expect(res.status).to.equal(200);
+            done();
+          });
+      });
+  });
+
+  it('Should contain a "title" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .get('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .end(function(err, res) {
+            expect(res.body.lesson).to.have.property('title');
+            done();
+          });
+      });
+  });
+
+  it('Should contain a "content" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .get('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .end(function(err, res) {
+            expect(res.body.lesson).to.have.property('content');
+            done();
+          });
+      });
+  });
+
+  it('Should contain a "difficulty" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .get('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .end(function(err, res) {
+            expect(res.body.lesson).to.have.property('difficulty');
+            done();
+          });
+      });
+  });
+
+  it('Should contain a "expectedResult" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .get('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .end(function(err, res) {
+            expect(res.body.lesson).to.have.property('expectedResult');
             done();
           });
       });
