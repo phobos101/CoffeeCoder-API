@@ -13,7 +13,8 @@ router.route('/lessons')
   .post(lessonController.createLesson);
 
 router.route('/lessons/:id')
-  .get(lessonController.showLesson);
+  .get(lessonController.showLesson)
+  .put(lessonController.updateLesson);
 
 router.route('/users')
   .get(userController.allUsers);

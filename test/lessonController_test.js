@@ -207,7 +207,7 @@ describe('PUT /lessons/:id', function() {
             'difficulty': 2,
             'expectedResult': 'updated'
           }).end(function(err, res) {
-            expect(res.status).to.equal(200);
+            expect(res.status).to.equal(202);
             expect(res.body.lesson.title).to.equal('Updated title');
             expect(res.body.lesson.content).to.equal('Updated content');
             expect(res.body.lesson.difficulty).to.equal(2);
