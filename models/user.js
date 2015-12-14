@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
-var Lesson = require('./lesson');
+// var Lesson = require('./lesson');
 
 var userSchema = new mongoose.Schema({
   email: {type: String, unique: true, required: true},
   password: {type: String, required: true},
-  lessons: [Lesson.schema]
+  lessonsSubbed: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
+  lessonsCompleted: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
+  lessonsCreated: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}]
 });
 
 // Create a statics to encrypt the password
