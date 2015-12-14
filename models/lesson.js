@@ -6,4 +6,4 @@ var lessonSchema = new mongoose.Schema({
   difficulty: Number
 });
 
-module.exports = mongoose.model("Lesson", lessonSchema);
+module.exports = mongoose.model('Lesson', lessonSchema);

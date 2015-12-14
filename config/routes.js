@@ -9,5 +9,6 @@ var router = express.Router();
 
 // Standard routes
 router.get('/lessons', lessonController.allLessons);
+router.get('/users', usersController.allusers);
 
 module.exports = router;
