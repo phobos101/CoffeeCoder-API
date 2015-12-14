@@ -273,5 +273,6 @@ describe('DELETE /lessons/:id', function() {
             expect(res.message).to.equal('Lesson removed')
             done();
           });
+      });
   });
 });
