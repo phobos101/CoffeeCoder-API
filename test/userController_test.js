@@ -186,35 +186,6 @@ describe('GET /users/:id', function() {
 });
 
 //==========================//
-//          CREATE          //
-//==========================//
-
-describe('POST /users', function() {
-
-  it('Should return a HTTP status code of 201', function(done) {
-    api
-    .post('/users')
-    .set('Accept', 'application/json')
-    .send({
-      'email': 'test@test.com',
-      'password': 'testing',
-      'lessonsSubbed': [],
-      'lessonsCreated': [],
-      'lessonsCompleted': []
-    }).end(function(err, res) {
-      expect(res.status).to.equal(201);
-      expect(res.body.user).to.have.property('email');
-      expect(res.body.user).to.have.property('password');
-      expect(res.body.user).to.have.property('lessonsSubbed');
-      expect(res.body.user).to.have.property('lessonsCreated');
-      expect(res.body.user).to.have.property('lessonsCompleted');
-      done();
-    });
-  });
-
-});
-
-//==========================//
 //          UPDATE          //
 //==========================//
 

@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
-// var Lesson = require('./lesson');
 
 var userSchema = new mongoose.Schema({
   email: {type: String, unique: true, required: true},
@@ -17,7 +16,7 @@ userSchema.statics.encrypt = function(password) {
 
 // Create an instance method to validate any specific user
 userSchema.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.local.password);
+  return bcrypt.compareSync(password, this.password);
 };
 
 module.exports = mongoose.model('User', userSchema);

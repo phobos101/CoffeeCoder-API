@@ -6,12 +6,14 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
+var passport = require('passport');
 // var jwt = require('jsonwebtoken');
 // var expressJWT = require('express-jwt');
 
 // Require relative files
 var config = require('./config/config');
 var routes = require('./config/routes');
+require('./config/passport')(passport);
 // var secret = require('./config/config').secret;
 
 // Hook into mongoDB via mongoose
@@ -25,6 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(cors());
+app.use(passport.initialize());
+
 
 // Set-up method-override
 app.use(methodOverride(function(req, res) {
