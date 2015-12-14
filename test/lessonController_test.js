@@ -155,6 +155,80 @@ describe('/GET lessons/:id', function() {
 
 });
 
+describe('CREATE /lessons', function() {
+
+  it('Should return a HTTP status code of 201', function(done) {
+    api
+    .post('/lessons')
+    .set('Accept', 'application/json')
+    .send({
+      'title': 'testLesson',
+      'content': 'Testing lesson creation with chai',
+      'difficulty': 1,
+      'expectedResult': 'test'
+    }).end(function(err, res) {
+      expect(res.status).to.equal(201);
+      done();
+    });
+  });
+
+});
+
+describe('CREATE /lessons (cont.)', function() {
+  before(function(done) {
+    api
+    .post('/candies')
+    .set('Accept', 'application/json')
+    .send({
+      'title': 'testLesson',
+      'content': 'Testing lesson creation with chai',
+      'difficulty': 1,
+      'expectedResult': 'test'
+    }).end(done);
+  });
+
+  it('Should contain a "title" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+      expect(res.body).to.have.property('title');
+      done();
+    });
+  });
+
+  it('Should contain a "content" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+      expect(res.body).to.have.property('content');
+      done();
+    });
+  });
+
+  it('Should contain a "difficulty" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+      expect(res.body).to.have.property('difficulty');
+      done();
+    });
+  });
+
+  it('Should contain a "expectedResult" property', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+      expect(res.body).to.have.property('expectedResult');
+      done();
+    });
+  });
+
+});
+
 //==========================//
 //          USERS           //
 //==========================//
