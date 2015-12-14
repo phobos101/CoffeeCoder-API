@@ -40,8 +40,17 @@ function updateLesson(req, res) {
     lesson.save(function(err, lesson) {
       if (err) return res.status(500).json({message: "There was an error updating your lesson."})
 
-      res.status(202).json({message: 'Lesson successfully updated.', lesson: lesson});
+      res.status(200).json({message: 'Lesson successfully updated.', lesson: lesson});
     });
+  });
+};
+
+function deleteLesson(req, res) {
+  var id = req.params.id;
+
+  Lesson.remove({_id:id}, function(err) {
+    if (err) return res.status(500).json({message: 'No lesson found with provided ID.'});
+    res.status(200).json({message: 'Lesson removed successfully.'});
   });
 };
 
@@ -49,5 +58,6 @@ module.exports = {
   allLessons: allLessons,
   showLesson: showLesson,
   createLesson: createLesson,
-  updateLesson: updateLesson
+  updateLesson: updateLesson,
+  deleteLesson: deleteLesson
 };

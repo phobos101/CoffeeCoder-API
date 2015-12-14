@@ -14,7 +14,8 @@ router.route('/lessons')
 
 router.route('/lessons/:id')
   .get(lessonController.showLesson)
-  .put(lessonController.updateLesson);
+  .put(lessonController.updateLesson)
+  .delete(lessonController.deleteLesson);
 
 router.route('/users')
   .get(userController.allUsers);
