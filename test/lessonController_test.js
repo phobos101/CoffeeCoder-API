@@ -252,3 +252,26 @@ describe('PUT /lessons/:id', function() {
   });
 
 });
+
+//==========================//
+//          DELETE          //
+//==========================//
+
+describe('DELETE /lessons/:id', function() {
+
+  it('Should delete a lesson', function(done) {
+    api
+      .get('/lessons')
+      .set('Accept', 'application/json')
+      .end(function(err, res) {
+        var id = res.body.lessons[0]._id;
+        api
+          .delete('/lessons/' + id)
+          .set('Accept', 'application/json')
+          .end(function(err, res) {
+            expect(res.status).to.equal(200);
+            expect(res.message).to.equal('Lesson removed')
+            done();
+          });
+  });
+});
