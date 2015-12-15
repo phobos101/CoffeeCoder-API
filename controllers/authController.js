@@ -5,7 +5,7 @@ var secret = process.env.COFFEECODER_SECRET;
 
 function register(req, res, next) {
   var localStrategy = passport.authenticate('local-signup', function(err, user, info) {
-    if (err) return res.status(500).json({message: 'Something went wrong!'});
+    if (err) return res.status(500).json({message: 'Something went wrong! - line 8'});
     if (info) return res.status(418).json({message: info.message});
     if (!user) return res.status(409).json({message: 'User already exists!'});
 

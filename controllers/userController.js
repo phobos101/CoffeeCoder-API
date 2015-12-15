@@ -24,11 +24,16 @@ function updateUser(req, res) {
     if (err) return res.status(500).json({message: "Something went wrong."});
     if (!user) return res.status(204).json({message: 'No user found with provided ID.'});
 
-    if (req.body.local.email) user.email = req.body.local.email;
-    if (req.body.local.password) user.password = req.body.local.password;
-    if (req.body.local.lessonsSubbed) user.lessonsSubbed = req.body.local.lessonsSubbed;
-    if (req.body.local.lessonsCreated) user.lessonsCreated = req.body.local.lessonsCreated;
-    if (req.body.local.lessonsCompleted) user.lessonsCompleted = req.body.local.lessonsCompleted;
+    if (req.body.local) {
+      if (req.body.local.email) user.local.email = req.body.local.email;
+      if (req.body.local.password) user.local.password = req.body.local.password;
+    };
+    console.log(req.body)
+    req.body.lessonsCreated ? console.log('true') : console.log('false')
+
+    if (req.body.lessonsSubbed) user.lessonsSubbed = req.body.lessonsSubbed;
+    if (req.body.lessonsCreated) user.lessonsCreated = req.body.lessonsCreated;
+    if (req.body.lessonsCompleted) user.lessonsCompleted = req.body.lessonsCompleted;
 
     user.save(function(err, user) {
       if (err) return res.status(500).json({message: "There was an error updating your user."})

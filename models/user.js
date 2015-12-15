@@ -2,20 +2,17 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
+  lessonsSubbed: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
+  lessonsCompleted: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
+  lessonsCreated: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
   local: {
     email: {type: String, unique: true, required: true},
     password: {type: String, required: true},
-    lessonsSubbed: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
-    lessonsCompleted: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
-    lessonsCreated: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}]
   },
   fb: {
     id: String,
     accessToken: String,
     email: String,
-    lessonsSubbed: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
-    lessonsCompleted: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
-    lessonsCreated: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}]
   }
 });
 

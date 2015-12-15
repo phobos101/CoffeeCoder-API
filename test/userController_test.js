@@ -26,7 +26,7 @@ describe('GET /users', function() {
       .end(function(err, res) {
         expect(res.body).to.be.an('object');
         expect(res.body.users).to.be.an('array');
-        expect(res.body.users[0]).to.be.an('object');
+        expect(res.body.users[0].local).to.be.an('object');
         done();
       });
   });
@@ -37,7 +37,7 @@ describe('GET /users', function() {
       .set('Accept', 'application/json')
       .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
-        expect(res.body.users[0]).to.have.property('email');
+        expect(res.body.users[0].local).to.have.property('email');
         done();
       });
   });
@@ -48,7 +48,7 @@ describe('GET /users', function() {
       .set('Accept', 'application/json')
       .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
-        expect(res.body.users[0]).to.have.property('password');
+        expect(res.body.users[0].local).to.have.property('password');
         done();
       });
   });
@@ -126,7 +126,7 @@ describe('GET /users/:id', function() {
           .set('Accept', 'application/json')
           .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
-            expect(res.body.user).to.have.property('email');
+            expect(res.body.user.local).to.have.property('email');
             done();
           });
       });
@@ -144,7 +144,7 @@ describe('GET /users/:id', function() {
           .set('Accept', 'application/json')
           .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
-            expect(res.body.user).to.have.property('password');
+            expect(res.body.user.local).to.have.property('password');
             done();
           });
       });
@@ -212,7 +212,7 @@ describe('GET /users/:id', function() {
 
 describe('PUT /users/:id', function() {
 
-  it('Should update an existing lesson', function(done) {
+  it('Should update an existing user', function(done) {
     api
       .get('/users')
       .set('Accept', 'application/json')
@@ -224,21 +224,23 @@ describe('PUT /users/:id', function() {
           .set('Accept', 'application/json')
           .set('Authorization', 'Bearer ' + token)
           .send({
-            'email': 'updated@test.com',
-            'password': 'updated',
+            'local': {
+              'email': 'updated@test.com',
+              'password': 'updated'
+            },
             'lessonsSubbed': [],
             'lessonsCreated': [],
             'lessonsCompleted': []
           }).end(function(err, res) {
             expect(res.status).to.equal(200);
-            expect(res.body.user.email).to.equal('updated@test.com');
-            expect(res.body.user.password).to.equal('updated');
+            expect(res.body.user.local.email).to.equal('updated@test.com');
+            expect(res.body.user.local.password).to.equal('updated');
             done();
           });
       });
   });
 
-  it('Should update an existing lesson partially', function(done) {
+  it('Should update an existing user partially', function(done) {
     api
       .get('/users')
       .set('Accept', 'application/json')
@@ -250,10 +252,12 @@ describe('PUT /users/:id', function() {
           .set('Accept', 'application/json')
           .set('Authorization', 'Bearer ' + token)
           .send({
-            'email': 'updatedAGAIN@test.com',
+            'local': {
+              'email': 'updatedAGAIN@test.com'
+            }
           }).end(function(err, res) {
             expect(res.status).to.equal(200);
-            expect(res.body.user.email).to.equal('updatedAGAIN@test.com');
+            expect(res.body.user.local.email).to.equal('updatedAGAIN@test.com');
             done();
           });
       });
@@ -280,7 +284,7 @@ describe('PUT /users/:id', function() {
 
 describe('DELETE /users/:id', function() {
 
-  it('Should delete a lesson', function(done) {
+  it('Should delete a user', function(done) {
     api
       .get('/users')
       .set('Accept', 'application/json')

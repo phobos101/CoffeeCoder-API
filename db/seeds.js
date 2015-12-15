@@ -18,8 +18,10 @@ demoLesson.save(function(err, demoLesson) {
 });
 
 var demoUser = new User({
-  email: 'demo@coffeecoder.com',
-  password: 'password',
+  local: {
+    email: 'demo@coffeecoder.com',
+    password: 'password'
+  },
   lessonsSubbed: [demoLesson],
   lessonsCreated: [demoLesson],
   lessonsCompleted: []
@@ -27,5 +29,5 @@ var demoUser = new User({
 
 demoUser.save(function(err, demoUser) {
   if (err) return console.log('[ERROR] - ' + err);
-  console.log('[+] - User added:\nEmail: ' + demoUser.email);
+  console.log('[+] - User added:\nEmail: ' + demoUser.local.email);
 });

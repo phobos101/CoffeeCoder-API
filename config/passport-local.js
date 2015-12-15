@@ -14,9 +14,6 @@ module.exports = function(passportLocal) {
       var newUser = new User();
       newUser.local.email = email;
       newUser.local.password = User.encrypt(password);
-      newUser.local.lessonsSubbed = [];
-      newUser.local.lessonsCreated = [];
-      newUser.local.lessonsCompleted = [];
 
       newUser.save(function(err, user) {
         if (err) return done(err, false, {message: 'Something went wrong.'});
