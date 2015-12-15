@@ -4,7 +4,8 @@
   "description": "Backend API for CoffeeCoder",
   "main": "app.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "start": "node db/seeds.js | nodemon app.js"
   },
   "repository": {
     "type": "git",
