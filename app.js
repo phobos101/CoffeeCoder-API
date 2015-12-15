@@ -13,7 +13,8 @@ var expressJWT = require('express-jwt');
 // Require relative files
 var config = require('./config/config');
 var routes = require('./config/routes');
-require('./config/passport')(passport);
+require('./config/passport-local')(passport);
+require('./config/passport-facebook')(passport);
 var secret = process.env.COFFEECODER_SECRET;
 
 // Hook into mongoDB via mongoose
