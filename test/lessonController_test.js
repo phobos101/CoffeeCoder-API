@@ -71,6 +71,34 @@ describe('GET /lessons', function() {
 });
 
 //==========================//
+//          CREATE          //
+//==========================//
+
+describe('POST /lessons', function() {
+
+  it('Should return a HTTP status code of 201', function(done) {
+    api
+    .post('/lessons')
+    .set('Accept', 'application/json')
+    .set('Authorization', 'Bearer ' + token)
+    .send({
+      'title': 'testLesson',
+      'content': 'Testing lesson creation with chai',
+      'difficulty': 1,
+      'expectedResult': 'test'
+    }).end(function(err, res) {
+      expect(res.status).to.equal(201);
+      expect(res.body.lesson).to.have.property('title');
+      expect(res.body.lesson).to.have.property('content');
+      expect(res.body.lesson).to.have.property('difficulty');
+      expect(res.body.lesson).to.have.property('expectedResult');
+      done();
+    });
+  });
+
+});
+
+//==========================//
 //           SHOW           //
 //==========================//
 
@@ -165,33 +193,6 @@ describe('GET /lessons/:id', function() {
 
 });
 
-//==========================//
-//          CREATE          //
-//==========================//
-
-describe('POST /lessons', function() {
-
-  it('Should return a HTTP status code of 201', function(done) {
-    api
-    .post('/lessons')
-    .set('Accept', 'application/json')
-    .set('Authorization', 'Bearer ' + token)
-    .send({
-      'title': 'testLesson',
-      'content': 'Testing lesson creation with chai',
-      'difficulty': 1,
-      'expectedResult': 'test'
-    }).end(function(err, res) {
-      expect(res.status).to.equal(201);
-      expect(res.body.lesson).to.have.property('title');
-      expect(res.body.lesson).to.have.property('content');
-      expect(res.body.lesson).to.have.property('difficulty');
-      expect(res.body.lesson).to.have.property('expectedResult');
-      done();
-    });
-  });
-
-});
 
 //==========================//
 //          UPDATE          //

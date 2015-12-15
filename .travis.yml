@@ -7,5 +7,3 @@ services:
 
 before_script:
   - sleep 15
-  - mongo mydb_test --eval 'db.lessons.insert({"_id" : ObjectId("567030e7e0e46d20c1bf6601"), "title" : "Demo Lesson", "content" : "1. Write an immediatly invoked functional expression that prints \"C0FF33C0D3R R0CK5!\" to the screen.", "difficulty" : 2, "expectedResult" : "C0FF33C0D3R R0CK5!", "__v" : 0})'
-  - mongo mydb_test --eval 'db.users.insert({"_id" : ObjectId("567030e7e0e46d20c1bf6602"), "local" : { "email" : "demo@coffeecoder.com", "password" : "password" }, "lessonsCreated" : [ ObjectId("567030e7e0e46d20c1bf6601") ], "lessonsCompleted" : [ ], "lessonsSubbed" : [ ObjectId("567030e7e0e46d20c1bf6601") ], "__v" : 0})'
