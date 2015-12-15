@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var supertest = require('supertest');
 var api = supertest('http://localhost:3000');
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfX3YiOjAsInBhc3N3b3JkIjoiJDJhJDEyJHk2UmFja0hnOWp5VVBFS0ZqY0I3Z082M1NoWTVETTJkUmRzS0x6czhUcHE5QjBOT3JhNUhXIiwiZW1haWwiOiJyb2JAcm9iLmNvbSIsIl9pZCI6IjU2NzAwMDJhN2YzZWNmMTE5ODI5ODhlNCJ9.e0UpUBf-OGODF8CvarwGDsjvJXZp7-Pl0d2wCFen-MA';
 
 //==========================//
 //          INDEX           //
@@ -84,6 +85,7 @@ describe('GET /lessons/:id', function() {
         api
           .get('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             // console log at this point shows res.body is ONLY /lessons/:id
             // therefore all testing in this block must be for :id only
@@ -102,6 +104,7 @@ describe('GET /lessons/:id', function() {
         api
           .get('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.lesson).to.have.property('title');
             done();
@@ -118,6 +121,7 @@ describe('GET /lessons/:id', function() {
         api
           .get('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.lesson).to.have.property('content');
             done();
@@ -134,6 +138,7 @@ describe('GET /lessons/:id', function() {
         api
           .get('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.lesson).to.have.property('difficulty');
             done();
@@ -150,6 +155,7 @@ describe('GET /lessons/:id', function() {
         api
           .get('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.lesson).to.have.property('expectedResult');
             done();
@@ -169,6 +175,7 @@ describe('POST /lessons', function() {
     api
     .post('/lessons')
     .set('Accept', 'application/json')
+    .set('Authorization', 'Bearer ' + token)
     .send({
       'title': 'testLesson',
       'content': 'Testing lesson creation with chai',
@@ -201,6 +208,7 @@ describe('PUT /lessons/:id', function() {
         api
           .put('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .send({
             'title': 'Updated title',
             'content': 'Updated content',
@@ -226,6 +234,7 @@ describe('PUT /lessons/:id', function() {
         api
           .put('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .send({
             'expectedResult': 'updated again'
           }).end(function(err, res) {
@@ -243,6 +252,7 @@ describe('PUT /lessons/:id', function() {
     api
       .put('/lessons/randomnonvalidID')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .send({
         'expectedResult': 'updated again'
       }).end(function(err, res) {
@@ -263,11 +273,13 @@ describe('DELETE /lessons/:id', function() {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.lessons[0]._id;
         api
           .delete('/lessons/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.status).to.equal(200);
             expect(res.body.message).to.equal('Lesson removed successfully.');

@@ -22,7 +22,6 @@ router.route('/lessons/:id')
 // Routes for users
 router.route('/users')
   .get(userController.allUsers);
-  // .post(userController.createUser);
 
 router.route('/users/:id')
   .get(userController.showUser)

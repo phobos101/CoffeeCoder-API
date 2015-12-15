@@ -1,6 +1,8 @@
 var expect = require('chai').expect;
 var supertest = require('supertest');
 var api = supertest('http://localhost:3000');
+var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfX3YiOjAsInBhc3N3b3JkIjoiJDJhJDEyJHk2UmFja0hnOWp5VVBFS0ZqY0I3Z082M1NoWTVETTJkUmRzS0x6czhUcHE5QjBOT3JhNUhXIiwiZW1haWwiOiJyb2JAcm9iLmNvbSIsIl9pZCI6IjU2NzAwMDJhN2YzZWNmMTE5ODI5ODhlNCJ9.e0UpUBf-OGODF8CvarwGDsjvJXZp7-Pl0d2wCFen-MA';
+
 
 //==========================//
 //          INDEX           //
@@ -12,6 +14,7 @@ describe('GET /users', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .expect(200, done);
   });
 
@@ -19,6 +22,7 @@ describe('GET /users', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body).to.be.an('object');
         expect(res.body.users).to.be.an('array');
@@ -31,6 +35,7 @@ describe('GET /users', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.users[0]).to.have.property('email');
         done();
@@ -41,6 +46,7 @@ describe('GET /users', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.users[0]).to.have.property('password');
         done();
@@ -51,6 +57,7 @@ describe('GET /users', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.users[0]).to.have.property('lessonsSubbed');
         done();
@@ -61,6 +68,7 @@ describe('GET /users', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.users[0]).to.have.property('lessonsCreated');
         done();
@@ -71,6 +79,7 @@ describe('GET /users', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.users[0]).to.have.property('lessonsCompleted');
         done();
@@ -89,11 +98,13 @@ describe('GET /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .get('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             // console log at this point shows res.body is ONLY /users/:id
             // therefore all testing in this block must be for :id only
@@ -107,11 +118,13 @@ describe('GET /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .get('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.user).to.have.property('email');
             done();
@@ -123,11 +136,13 @@ describe('GET /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .get('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.user).to.have.property('password');
             done();
@@ -139,11 +154,13 @@ describe('GET /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .get('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.user).to.have.property('lessonsSubbed');
             done();
@@ -155,11 +172,13 @@ describe('GET /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .get('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.user).to.have.property('lessonsCreated');
             done();
@@ -171,11 +190,13 @@ describe('GET /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .get('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.body.user).to.have.property('lessonsCompleted');
             done();
@@ -195,11 +216,13 @@ describe('PUT /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .put('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .send({
             'email': 'updated@test.com',
             'password': 'updated',
@@ -219,11 +242,13 @@ describe('PUT /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .put('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .send({
             'email': 'updatedAGAIN@test.com',
           }).end(function(err, res) {
@@ -238,6 +263,7 @@ describe('PUT /users/:id', function() {
     api
       .put('/users/randomnonvalidID')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .send({
         'email': 'random@fail.com'
       }).end(function(err, res) {
@@ -258,11 +284,13 @@ describe('DELETE /users/:id', function() {
     api
       .get('/users')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         var id = res.body.users[0]._id;
         api
           .delete('/users/' + id)
           .set('Accept', 'application/json')
+          .set('Authorization', 'Bearer ' + token)
           .end(function(err, res) {
             expect(res.status).to.equal(200);
             expect(res.body.message).to.equal('User removed successfully.');
