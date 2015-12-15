@@ -12,11 +12,11 @@ module.exports = function(passportLocal) {
       if (user) return done(null, false, {message: 'Email address already registered.'});
 
       var newUser = new User();
-      newUser.email = email;
-      newUser.password = User.encrypt(password);
-      newUser.lessonsSubbed = req.body.lessonsSubbed;
-      newUser.lessonsCreated = req.body.lessonsCreated;
-      newUser.lessonsCompleted = req.body.lessonsCompleted;
+      newUser.local.email = email;
+      newUser.local.password = User.encrypt(password);
+      newUser.local.lessonsSubbed = [];
+      newUser.local.lessonsCreated = [];
+      newUser.local.lessonsCompleted = [];
 
       newUser.save(function(err, user) {
         if (err) return done(err, false, {message: 'Something went wrong.'});

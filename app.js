@@ -13,8 +13,8 @@ var expressJWT = require('express-jwt');
 // Require relative files
 var config = require('./config/config');
 var routes = require('./config/routes');
-require('./config/passport-local')(passport);
-require('./config/passport-facebook')(passport);
+
+// Establish JWT secret
 var secret = process.env.COFFEECODER_SECRET;
 
 // Hook into mongoDB via mongoose
@@ -30,7 +30,6 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(passport.initialize());
 
-
 // Set-up method-override
 app.use(methodOverride(function(req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -39,6 +38,10 @@ app.use(methodOverride(function(req, res) {
     return method;
   };
 }));
+
+// Set up passport AFTER bodyParser.urlencoded
+require('./config/passport-local')(passport);
+require('./config/passport-facebook')(passport);
 
 // Set app to use JWTs
 app.use(expressJWT({secret: secret})
