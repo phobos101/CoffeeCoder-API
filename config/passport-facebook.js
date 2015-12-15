@@ -35,6 +35,9 @@ module.exports = function(passportFacebook) {
           newUser.fb.id = profile.id;
           newUser.fb.accessToken = accessToken;
           newUser.fb.email = profile.emails[0].value;
+          newUser.fb.lessonsSubbed = [];
+          newUser.fb.lessonsCreated = [];
+          newUser.fb.lessonsCompleted = [];
           newUser.save(function(err) {
             if (err) return done(err);
             return done(null, newUser);
