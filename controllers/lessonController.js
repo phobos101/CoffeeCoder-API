@@ -33,6 +33,7 @@ function updateLesson(req, res) {
     if (!lesson) return res.status(204).json({message: 'No lesson found with provided ID.'});
 
     if (req.body.title) lesson.title = req.body.title;
+    if (req.body.summary) lesson.summary = req.body.summary;
     if (req.body.content) lesson.content = req.body.content;
     if (req.body.difficulty) lesson.difficulty = req.body.difficulty;
     if (req.body.expectedResult) lesson.expectedResult = req.body.expectedResult;
