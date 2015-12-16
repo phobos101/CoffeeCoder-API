@@ -5,6 +5,7 @@ var userSchema = new mongoose.Schema({
   lessonsSubbed: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
   lessonsCompleted: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
   lessonsCreated: [{type: mongoose.Schema.ObjectId, ref: 'Lesson'}],
+  points: Number,
   local: {
     email: {type: String, unique: true, required: true},
     password: {type: String, required: true},
