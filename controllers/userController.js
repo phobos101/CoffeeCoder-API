@@ -24,8 +24,9 @@ function updateUser(req, res) {
     if (err) return res.status(500).json({message: "Something went wrong."});
     if (!user) return res.status(204).json({message: 'No user found with provided ID.'});
     console.log(req.body.local)
-    if (req.body.local.email) user.local.email = req.body.local.email;
-    // if (req.body.local.password) user.local.password = req.body.local.password;
+    if (req.body.local) {
+      if (req.body.local.email) user.local.email = req.body.local.email;
+    };
     if (req.body.lessonsSubbed) user.lessonsSubbed = req.body.lessonsSubbed;
     if (req.body.lessonsCreated) user.lessonsCreated = req.body.lessonsCreated;
     if (req.body.lessonsCompleted) user.lessonsCompleted = req.body.lessonsCompleted;
