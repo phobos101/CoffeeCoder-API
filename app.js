@@ -50,6 +50,7 @@ app.use(expressJWT({secret: secret})
       {url: '/register', methods: ['POST']},
       {url: '/login', methods: ['POST']},
       {url: '/lessons', methods: ['GET']},
+      {url: '/auth/facebook', methods: ['GET']},
     ]
   }));
 
