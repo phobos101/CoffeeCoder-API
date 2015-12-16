@@ -66,5 +66,5 @@ app.use(function(err, req, res, next) {
 // Tell app to use routing on the root path.
 app.use('/', routes);
 
-app.listen(process.env.port || 3000);
+app.listen(process.env.PORT || 3000);
 console.log('coffeeCoderAPI is alive and listening on port 3000.');
