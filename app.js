@@ -15,10 +15,11 @@ var config = require('./config/config');
 var routes = require('./config/routes');
 
 // Establish JWT secret
-var secret = process.env.COFFEECODER_SECRET;
+var secret = require('./config/config').secret;
 
 // Hook into mongoDB via mongoose
 mongoose.connect(config.database);
+console.log('Mongo:' + config.database)
 
 // Create App
 var app = express();

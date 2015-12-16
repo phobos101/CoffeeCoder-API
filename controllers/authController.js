@@ -1,7 +1,7 @@
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
-var secret = process.env.COFFEECODER_SECRET;
+var secret = require('../config/config').secret;
 
 function register(req, res, next) {
   var localStrategy = passport.authenticate('local-signup', function(err, user, info) {
