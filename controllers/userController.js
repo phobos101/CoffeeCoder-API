@@ -27,6 +27,7 @@ function updateUser(req, res) {
     if (req.body.local) {
       if (req.body.local.email) user.local.email = req.body.local.email;
     };
+    if (req.body.points) user.points = req.body.points;
     if (req.body.lessonsSubbed) user.lessonsSubbed = req.body.lessonsSubbed;
     if (req.body.lessonsCreated) user.lessonsCreated = req.body.lessonsCreated;
     if (req.body.lessonsCompleted) user.lessonsCompleted = req.body.lessonsCompleted;
