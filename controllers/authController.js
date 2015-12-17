@@ -17,7 +17,6 @@ function register(req, res, next) {
       success: true,
       message: 'Thank you for authenticating',
       token: token,
-      user: user
     });
   });
 
@@ -35,7 +34,6 @@ function login(req, res, next) {
       success: true,
       message: 'You have logged in sucessfully!',
       token: token,
-      user: user
     });
   });
 };
