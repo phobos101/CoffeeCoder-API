@@ -4,13 +4,13 @@ The CoffeeCoder API allows for CoffeeCoder to perform full RESTful routes on **l
 
 The backend was made via a TDD process using Mocha and Chai.
 
-Routes have both authentication and authorization. Authentication is done with JSON Web Tokens (JWTs) and the authorization is done from my own custom code. (You can view it in the `/config/routes.js` file).
+Routes have both authentication and authorization. **Authentication** is done with JSON Web Tokens (JWTs) and the **authorization** is done via my own custom code. (You can view it in the `/config/routes.js` file).
 
 ##Installation
 1. `git clone git@github.com:phobos101/CoffeeCoder-API.git`
 2. `npm install`
 3. `npm test` (optional - for testing)
-4. 'nodemon app.js`
+4. `nodemon app.js`
 
 ##The build
 The backend was build as part of a MEAN stack. The full of packages are:
@@ -34,28 +34,19 @@ The backend was build as part of a MEAN stack. The full of packages are:
 ##Routes
 The standard routes for CoffeeCoder.
 
-####/lessons
-**GET** Retrieves all the lessons.
-**POST** Creates a new lesson.
+**GET** /lessons - Retrieves all the lessons.
+**POST** /lessons - Creates a new lesson.
+**GET** /lessons/:id - Retrieves the lesson based on the ID.
+**PUT** /lessons/:id - Updates a lesson based on the ID (authorization based on the author).
+**DELETE** /lessons/:id - Deletes a lesson based on the ID (authorization based on the author).
 
-####/lessons/:id
-**GET** Retrieves the lesson based on the ID.
-**PUT** Updates a lesson based on the ID (authorization based on the author).
-**DELETE** Deletes a lesson based on the ID (authorization based on the author).
+**GET** /users - Retrieves all users registered.
+**GET** /users/:id - Retrieves the user based on the ID.
+**PUT** /users/:id - Updates a user based on the ID (authorization based on the user).
+**DELETE** /users/:id - Retrieves the user based on the ID (authorization based on the user).
 
-####/users
-**GET** Retrieves all users registered.
-
-####/users/:id
-**GET** Retrieves the user based on the ID.
-**PUT** Updates a user based on the ID (authorization based on the user).
-**DELETE** Retrieves the user based on the ID (authorization based on the user).
-
-####/login
-**POST** Sends credentials to be evaluated (unsecured).
-
-####/register
-**POST** Registers a user (unsecured).
+**POST** /login - Sends credentials to be evaluated (unsecured).
+**POST** /register - Registers a user (unsecured).
 
 ##Models
 The structure of the models.
