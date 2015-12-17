@@ -23,7 +23,6 @@ function updateUser(req, res) {
   User.findById({_id: id}, function(err, user) {
     if (err) return res.status(500).json({message: "Something went wrong."});
     if (!user) return res.status(204).json({message: 'No user found with provided ID.'});
-    console.log(req.body.local)
     if (req.body.local) {
       if (req.body.local.email) user.local.email = req.body.local.email;
     };

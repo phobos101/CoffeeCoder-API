@@ -19,7 +19,6 @@ var secret = require('./config/config').secret;
 
 // Hook into mongoDB via mongoose
 mongoose.connect(config.database);
-console.log('Mongo:' + config.database)
 
 // Create App
 var app = express();

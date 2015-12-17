@@ -8,7 +8,6 @@ module.exports = function(passportFacebook) {
 
   passportFacebook.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
-      console.log('deserializing user: ' + user);
       done(err, user);
     });
   });
@@ -22,7 +21,6 @@ module.exports = function(passportFacebook) {
   }, function(accessToken, refreshToken, profile, done) {
 
     // // Use this to see the information returned from Facebook
-    console.log(profile);
     process.nextTick(function() {
       User.findOne({
         'fb.id': profile.id
