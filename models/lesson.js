@@ -5,7 +5,8 @@ var lessonSchema = new mongoose.Schema({
   summary: {type: String, required: true},
   content: {type: String, required: true},
   difficulty: {type: Number, required: true},
-  expectedResult: {type: String, required: true}
+  expectedResult: {type: String, required: true},
+  author: {type: String, required: true}
 });
 
 module.exports = mongoose.model('Lesson', lessonSchema);
