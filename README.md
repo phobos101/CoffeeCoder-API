@@ -34,19 +34,19 @@ The backend was build as part of a MEAN stack. The full of packages are:
 ##Routes
 The standard routes for CoffeeCoder.
 
-**GET** /lessons - Retrieves all the lessons.
-**POST** /lessons - Creates a new lesson.
-**GET** /lessons/:id - Retrieves the lesson based on the ID.
-**PUT** /lessons/:id - Updates a lesson based on the ID (authorization based on the author).
-**DELETE** /lessons/:id - Deletes a lesson based on the ID (authorization based on the author).
+* **GET** /lessons - Retrieves all the lessons.
+* **POST** /lessons - Creates a new lesson.
+* **GET** /lessons/:id - Retrieves the lesson based on the ID.
+* **PUT** /lessons/:id - Updates a lesson based on the ID (authorization based on the author).
+* **DELETE** /lessons/:id - Deletes a lesson based on the ID (authorization based on the author).
 
-**GET** /users - Retrieves all users registered.
-**GET** /users/:id - Retrieves the user based on the ID.
-**PUT** /users/:id - Updates a user based on the ID (authorization based on the user).
-**DELETE** /users/:id - Retrieves the user based on the ID (authorization based on the user).
+* **GET** /users - Retrieves all users registered.
+* **GET** /users/:id - Retrieves the user based on the ID.
+* **PUT** /users/:id - Updates a user based on the ID (authorization based on the user).
+* **DELETE** /users/:id - Retrieves the user based on the ID (authorization based on the user).
 
-**POST** /login - Sends credentials to be evaluated (unsecured).
-**POST** /register - Registers a user (unsecured).
+* **POST** /login - Sends credentials to be evaluated (unsecured).
+* **POST** /register - Registers a user (unsecured).
 
 ##Models
 The structure of the models.
