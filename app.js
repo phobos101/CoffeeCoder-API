@@ -41,7 +41,7 @@ app.use(methodOverride(function(req, res) {
 
 // Set up passport AFTER bodyParser.urlencoded
 require('./config/passport-local')(passport);
-require('./config/passport-facebook')(passport);
+// require('./config/passport-facebook')(passport);
 
 // Set app to use JWTs
 app.use(expressJWT({secret: secret})

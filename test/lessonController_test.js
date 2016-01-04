@@ -13,6 +13,7 @@ describe('GET /lessons', function() {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .expect(200, done);
   });
 
@@ -20,6 +21,7 @@ describe('GET /lessons', function() {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body).to.be.an('object');
         expect(res.body.lessons).to.be.an('array');
@@ -32,6 +34,7 @@ describe('GET /lessons', function() {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.lessons[0]).to.have.property('title');
         done();
@@ -42,6 +45,7 @@ describe('GET /lessons', function() {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.lessons[0]).to.have.property('content');
         done();
@@ -52,6 +56,7 @@ describe('GET /lessons', function() {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.lessons[0]).to.have.property('difficulty');
         done();
@@ -62,6 +67,7 @@ describe('GET /lessons', function() {
     api
       .get('/lessons')
       .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(err, res) {
         expect(res.body.lessons[0]).to.have.property('expectedResult');
         done();
