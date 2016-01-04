@@ -18,7 +18,9 @@ var routes = require('./config/routes');
 var secret = require('./config/config').secret;
 
 // Hook into mongoDB via mongoose
-mongoose.connect(config.database);
+mongoose.connect(config.database, function(err) {
+  if (err) console.log(err);
+});
 
 // Create App
 var app = express();
