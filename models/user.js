@@ -9,11 +9,6 @@ var userSchema = new mongoose.Schema({
   local: {
     email: {type: String, unique: true, required: true},
     password: {type: String, required: true},
-  },
-  fb: {
-    id: String,
-    accessToken: String,
-    email: String,
   }
 });
 
