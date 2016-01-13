@@ -28,15 +28,9 @@ function createLesson(req, res) {
 function updateLesson(req, res) {
   var id = req.params.id;
 
-  Lesson.findById({_id: id}, function(err, lesson) {
+  Lesson.findByIdAndUpdate({_id: id}, req.body, function(err, lesson) {
     if (err) return res.status(500).json({message: "Something went wrong."});
     if (!lesson) return res.status(204).json({message: 'No lesson found with provided ID.'});
-
-    if (req.body.title) lesson.title = req.body.title;
-    if (req.body.summary) lesson.summary = req.body.summary;
-    if (req.body.content) lesson.content = req.body.content;
-    if (req.body.difficulty) lesson.difficulty = req.body.difficulty;
-    if (req.body.expectedResult) lesson.expectedResult = req.body.expectedResult;
 
     lesson.save(function(err, lesson) {
       if (err) return res.status(500).json({message: "There was an error updating your lesson."})
